@@ -41,7 +41,6 @@ public class ExpenseBusinessAdaptor {
             product.setBrand(productView.getBrand());
             product.setQuantity(productView.getQuantity());
             product.setPrice(productView.getPrice());
-            //product.setExpenseDate(expenseView.getExpenseDate());
             productList.add(product);
         }
         return productList;

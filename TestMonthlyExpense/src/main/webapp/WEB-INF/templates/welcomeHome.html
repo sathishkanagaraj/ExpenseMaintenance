@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/style.css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/jquery-ui.css" th:href="@{/css/jquery-ui.css}"/>
+    <title th:text="#{expense.page.title}">Welcome to Home Monthly Expense View</title>
+</head>
+
+<body class="welcome_home_bg">
+<form action="#" th:action="@{/expense}">
+    <div class="main_layout top_padding left_padding">
+
+        <div class="welcome_home">
+            <span class="welcome_message" th:text="#{welcome.message}">Welcome to Monthly Home Expense Report!!!</span>
+            <span><img style="padding-left: 220px;padding-top: 50px;padding-bottom: 30px"
+                       src="../../img/home_resized.jpg"
+                       th:attr="src=@{/img/home_resized.jpg},title=#{home.img.title},alt=#{home.img.alt}"/></span>
+
+        <span style="padding-left: 370px">
+
+        <input type="submit" value="Click to Explore..." class="btn btn-primary btn-large"/>
+        </span>
+        </div>
+
+    </div>
+
+</form>
+</body>
+</html>

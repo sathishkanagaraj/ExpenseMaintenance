@@ -19,7 +19,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "expense_id")
+    @JoinColumn(name = "expense_date", referencedColumnName = "expense_date")
     private Expense expense;
     @Column(name = "name")
     private String name;

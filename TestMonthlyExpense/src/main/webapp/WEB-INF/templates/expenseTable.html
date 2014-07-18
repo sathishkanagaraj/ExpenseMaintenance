@@ -38,10 +38,7 @@
                 <tbody>
 
                 <tr th:each="product,prodStat : *{products}">
-                    <td>
-                        <input id="productId+${prodStat.count}" type="text" th:value="${prodStat.count}"
-                               th:field="*{products[__${prodStat.index}__].id}" placeholder="id"/>
-                    </td>
+                    <td th:text="${prodStat.count}">1</td>
                     <td>
                         <input id="productName" type="text" th:field="*{products[__${prodStat.index}__].name}"
                                placeholder="name"/>

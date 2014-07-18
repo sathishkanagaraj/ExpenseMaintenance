@@ -8,6 +8,17 @@ public class ProductView {
     private String name;
     private String brand;
     private String quantity;
+    private BigDecimal rate;
+    private BigDecimal price;
+    private ExpenseView expenseView;
+
+    public ExpenseView getExpenseView() {
+        return expenseView;
+    }
+
+    public void setExpenseView(ExpenseView expenseView) {
+        this.expenseView = expenseView;
+    }
 
     public BigDecimal getRate() {
         return rate;
@@ -16,9 +27,6 @@ public class ProductView {
     public void setRate(BigDecimal rate) {
         this.rate = rate;
     }
-
-    private BigDecimal rate;
-    private BigDecimal price;
 
     public Long getId() {
         return id;

@@ -1,5 +1,7 @@
 package com.springapp.mvc.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,6 +19,7 @@ public class Expense {
 
     @Id
     @Column(name = "expense_date")
+    @DateTimeFormat(pattern = "MM/dd/YYYY")
     private Date expenseDate;
     @OneToMany(mappedBy = "expense", cascade = CascadeType.ALL)
     private List<Product> products;

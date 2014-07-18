@@ -27,11 +27,11 @@ public class ExpenseBusinessAdaptor {
     public Expense adapt(ExpenseView expenseView) {
         final Expense expense = new Expense();
         expense.setExpenseDate(expenseView.getExpenseDate());
-        expense.setProducts(getProducts(expenseView));
+        expense.setProducts(getProducts(expenseView, expense));
         return expense;
     }
 
-    private List<Product> getProducts(ExpenseView expenseView) {
+    private List<Product> getProducts(ExpenseView expenseView, Expense expense) {
         final List<Product> productList = new ArrayList<Product>();
         Product product;
         for (ProductView productView : expenseView.getProducts()) {
@@ -41,6 +41,8 @@ public class ExpenseBusinessAdaptor {
             product.setBrand(productView.getBrand());
             product.setQuantity(productView.getQuantity());
             product.setPrice(productView.getPrice());
+            product.setRate(productView.getRate());
+            product.setExpense(expense);
             productList.add(product);
         }
         return productList;

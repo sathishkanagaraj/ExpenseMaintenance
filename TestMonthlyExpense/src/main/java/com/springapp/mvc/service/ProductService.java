@@ -25,4 +25,9 @@ public interface ProductService {
      * @return list of products
      */
     List<Product> retrieveProducts();
+
+    /*
+    * get product by category
+    * */
+    List<Product> getProductsByCategory(String category);
 }

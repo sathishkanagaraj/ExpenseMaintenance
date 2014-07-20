@@ -12,7 +12,8 @@ import java.math.BigDecimal;
  */
 @Entity
 @Table(name = "Product_Details")
-
+@NamedQueries({@NamedQuery(name = "getAllProducts", query = "select p from Product p"),
+        @NamedQuery(name = "getProductsByCategory", query = "select p from Product p where p.category=:categoryCode")})
 public class Product {
 
     @Id
@@ -31,6 +32,8 @@ public class Product {
     private BigDecimal rate;
     @Column(name = "price")
     private BigDecimal price;
+    @Column(name = "category")
+    private String category;
 
     public Product(Long id, String name, String brand, String quantity, BigDecimal rate, BigDecimal price) {
         this.id = id;
@@ -98,6 +101,14 @@ public class Product {
 
     public void setExpense(Expense expense) {
         this.expense = expense;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override

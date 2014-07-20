@@ -4,23 +4,48 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" media="all" href="../../css/style.css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" media="all" href="../../css/jquery-ui.css" th:href="@{/css/jquery-ui.css}"/>
     <title th:text="#{expense.page.title}">Title</title>
 </head>
 
 <body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/view/expenseChart}">Expense Management</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right" role="form">
+                <div class="form-group">
+                    <input type="text" placeholder="Email" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" class="form-control"/>
+                </div>
+                <button type="submit" class="btn btn-success">Sign in</button>
+            </form>
+        </div>
+        <!--/.navbar-collapse -->
+    </div>
+</div>
 <div>
-    <form action="#" th:action="@{/expense}" th:object="${expenseView}" method="post">
+    <form action="#" th:action="@{/create/expense}" th:object="${expenseView}" method="post">
         <ul th:if="${#fields.hasErrors('*')}" style="border: 1px solid red;">
             <li th:each="err : ${#fields.errors('*')}" th:text="${inputError}">Input is incorrect</li>
         </ul>
-        <fieldset>
-            <span style="padding-left: 800px">
-           <label> Expense Date(dd/MM/yyyy) : </label> <input type="text" id="datePicker"
-                                                              th:field="*{expenseDate}"/></span>
-            <table class="box-table-a">
-                <caption th:text="#{expense.table.caption}">Monthly Expense Table(Static data)</caption>
+
+        <h2 class="sub-header" th:text="#{expense.table.caption}">Add/delete products</h2>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th scope="col" th:text="#{expense.id.label}">Id</th>
@@ -29,10 +54,6 @@
                     <th scope="col" th:text="#{expense.product.quantity.label}">Quantity</th>
                     <th scope="col" th:text="#{expense.product.rate.label}">Rate</th>
                     <th scope="col" th:text="#{expense.product.price.label}">Price</th>
-                    <th scope="col" th:text="#{expense.product.empty}">Price</th>
-                    <th scope="col">
-                        <button type="submit" name="addRow" th:text="#{expense.row.add}">Add Product</button>
-                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -61,33 +82,31 @@
                                placeholder="price"/>
                     </td>
                     <td>
-                        <button type="submit" name="addRow" th:value="${prodStat.index}" th:text="#{expense.row.add}">
+                        <button class="btn btn-xs btn-success" type="submit" name="addRow" th:value="${prodStat.index}"
+                                th:text="#{expense.row.add}">
                             Add Row
                         </button>
                     </td>
                     <td>
-                        <button type="submit" name="removeRow" th:value="${prodStat.index}"
+                        <button class="btn btn-xs btn-danger" type="submit" name="removeRow"
+                                th:value="${prodStat.index}"
                                 th:text="#{expense.row.remove}">Remove row
                         </button>
                     </td>
                 </tr>
-                <tr>
-                    <td style="float: left">Total : <input type="text" th:field="*{totalExpense}"/></td>
-                </tr>
                 </tbody>
             </table>
-        </fieldset>
-        <div class="submit">
-            <button type="submit" name="saveProducts"> Save</button>
-            <button type="submit" name="retrieveProducts"> show</button>
+
+            <div>
+                <button class="btn btn-success" type="submit" name="saveProducts"> Save</button>
+                <button class="btn btn-success" type="submit" name="retrieveProducts"> show</button>
+            </div>
         </div>
     </form>
 </div>
 <script src="../../js/jQuery-2.1.1.js" th:src="@{/js/jQuery-2.1.1.js}"></script>
-<script src="../../js/expenseTable.js" th:src="@{/js/expenseTable.js}"></script>
 <script src="../../js/jquery-ui.js" th:src="@{/js/jquery-ui.js}"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script src="../../js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
 
 </body>
 </html>

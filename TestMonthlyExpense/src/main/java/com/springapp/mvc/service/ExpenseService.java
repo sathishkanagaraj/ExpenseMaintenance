@@ -12,4 +12,7 @@ import com.springapp.mvc.model.Expense;
 public interface ExpenseService {
 
     void saveExpense(Expense expense);
+
+    Expense getExpenseByCategory(String category);
+
 }

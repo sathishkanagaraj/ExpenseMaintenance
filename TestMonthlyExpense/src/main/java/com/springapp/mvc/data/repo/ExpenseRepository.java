@@ -3,6 +3,8 @@ package com.springapp.mvc.data.repo;
 import com.springapp.mvc.model.Expense;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: sathih
@@ -10,5 +12,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Time: 9:56 PM
  * To change this template use File | Settings | File Templates.
  */
-public interface ExpenseRepository extends JpaRepository<Expense, Long> {
+public interface ExpenseRepository extends JpaRepository<Expense, Date> {
+
 }

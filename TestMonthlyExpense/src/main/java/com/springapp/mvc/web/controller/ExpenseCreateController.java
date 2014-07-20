@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -24,9 +25,9 @@ import java.util.List;
  * Time: 12:45 PM
  * To change this template use File | Settings | File Templates.
  */
-@RequestMapping("/")
+@RequestMapping("/create")
 @Controller
-public class ExpenseController {
+public class ExpenseCreateController {
 
     @Autowired
     private ExpenseBusinessAdaptor expenseBusinessAdaptor;
@@ -40,10 +41,17 @@ public class ExpenseController {
     @Autowired
     private ExpenseService expenseService;
 
-    @RequestMapping({"/", "/expense"})
+    @RequestMapping({"/expenseChart"})
     public String getExpensePage(final ExpenseView expenseView, Model model) {
         expenseView.setExpenseDate(Calendar.getInstance().getTime());
+        expenseView.setProducts(addProducts());
         return "expenseTable";
+    }
+
+    private List<ProductView> addProducts() {
+        final List<ProductView> productViews = new ArrayList<ProductView>();
+        productViews.add(new ProductView());
+        return productViews;
     }
 
     @RequestMapping(value = "/expense", params = {"addRow"})

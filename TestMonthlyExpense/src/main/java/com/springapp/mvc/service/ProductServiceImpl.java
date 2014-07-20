@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -17,6 +19,8 @@ import java.util.List;
  */
 @Service
 public class ProductServiceImpl implements ProductService {
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Resource
     private ProductRepository productRepository;
@@ -31,5 +35,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> retrieveProducts() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public List<Product> getProductsByCategory(String category) {
+        List resultList = entityManager.createNamedQuery("getProductsByCategory").setParameter("categoryCode", category).getResultList();
+        return resultList;
     }
 }

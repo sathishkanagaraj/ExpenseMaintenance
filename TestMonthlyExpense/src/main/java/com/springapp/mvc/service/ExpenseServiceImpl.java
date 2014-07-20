@@ -23,4 +23,9 @@ public class ExpenseServiceImpl implements ExpenseService {
     public void saveExpense(Expense expense) {
         expenseRepository.save(expense);
     }
+
+    @Override
+    public Expense getExpenseByCategory(String category) {
+        return null;
+    }
 }

@@ -52,6 +52,7 @@ public class ExpenseViewController {
         ModelAndView modelAndView = new ModelAndView("expenseView");
         List<Product> productsOnMonth = productService.getProductsByMonth(month);
         modelAndView.addObject("products", productsOnMonth);
+        modelAndView.addObject("month", month);
         return modelAndView;
     }
 

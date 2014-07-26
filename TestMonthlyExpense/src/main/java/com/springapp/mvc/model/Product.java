@@ -12,14 +12,14 @@ import java.math.BigDecimal;
  */
 @Entity
 @Table(name = "Product_Details")
-@NamedQueries({@NamedQuery(name = "getAllProducts", query = "select p from Product p"),
+@NamedQueries({@NamedQuery(name = "getProductsByMonth", query = "select p from Product p where p.month=:month"),
         @NamedQuery(name = "getProductsByCategory", query = "select p from Product p where p.category=:categoryCode")})
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "expense_date", referencedColumnName = "expense_date")
     private Expense expense;
     @Column(name = "name")
@@ -27,15 +27,17 @@ public class Product {
     @Column(name = "brand")
     private String brand;
     @Column(name = "quantity")
-    private String quantity;
+    private BigDecimal quantity;
     @Column(name = "rate")
     private BigDecimal rate;
     @Column(name = "price")
     private BigDecimal price;
     @Column(name = "category")
     private String category;
+    @Column(name = "month")
+    private String month;
 
-    public Product(Long id, String name, String brand, String quantity, BigDecimal rate, BigDecimal price) {
+    public Product(Long id, String name, String brand, BigDecimal quantity, BigDecimal rate, BigDecimal price) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -79,11 +81,11 @@ public class Product {
         this.brand = brand;
     }
 
-    public String getQuantity() {
+    public BigDecimal getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 
@@ -109,6 +111,14 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
     }
 
     @Override

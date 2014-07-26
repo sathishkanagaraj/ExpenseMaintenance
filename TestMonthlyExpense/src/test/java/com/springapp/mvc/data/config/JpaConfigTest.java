@@ -35,7 +35,7 @@ public class JpaConfigTest {
     @Before
     public void setUp() throws Exception {
         /*expenseRepository.save(new Expense());*/
-        productRepository.save(new Product(1L, "ProductName", "ProductBrand", "1", BigDecimal.ONE, BigDecimal.TEN));
+        productRepository.save(new Product(1L, "ProductName", "ProductBrand", BigDecimal.ONE, BigDecimal.ONE, BigDecimal.TEN));
 
     }
 

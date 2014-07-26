@@ -39,7 +39,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getProductsByCategory(String category) {
-        List resultList = entityManager.createNamedQuery("getProductsByCategory").setParameter("categoryCode", category).getResultList();
+        List<Product> resultList = entityManager.createNamedQuery("getProductsByCategory").setParameter("categoryCode", category).getResultList();
+        return resultList;
+    }
+
+    @Override
+    public List<Product> getProductsByMonth(String month) {
+        List<Product> resultList = entityManager.createNamedQuery("getProductsByMonth").setParameter("month", month).getResultList();
         return resultList;
     }
 }

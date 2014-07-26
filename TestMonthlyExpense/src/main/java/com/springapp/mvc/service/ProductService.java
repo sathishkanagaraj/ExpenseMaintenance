@@ -30,4 +30,9 @@ public interface ProductService {
     * get product by category
     * */
     List<Product> getProductsByCategory(String category);
+
+    /*
+    * get Products by month
+    * */
+    List<Product> getProductsByMonth(String month);
 }

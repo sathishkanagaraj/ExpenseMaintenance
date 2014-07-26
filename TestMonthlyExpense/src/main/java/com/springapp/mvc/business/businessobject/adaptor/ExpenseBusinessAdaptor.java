@@ -6,6 +6,7 @@ import com.springapp.mvc.web.view.viewobject.ExpenseView;
 import com.springapp.mvc.web.view.viewobject.ProductView;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,18 @@ public class ExpenseBusinessAdaptor {
         final Expense expense = new Expense();
         expense.setExpenseDate(expenseView.getExpenseDate());
         expense.setProducts(getProducts(expenseView, expense));
+        expense.setTotalExpense(getTotalExpense(expenseView.getProducts()));
         return expense;
+    }
+
+    private BigDecimal getTotalExpense(List<ProductView> productViews) {
+        BigDecimal expenseInTotal = BigDecimal.ZERO;
+        for (ProductView productView : productViews) {
+            BigDecimal priceInBigDecimal = productView.getPrice();
+            expenseInTotal = expenseInTotal.add(priceInBigDecimal);
+        }
+        System.out.println(expenseInTotal);
+        return expenseInTotal;
     }
 
     private List<Product> getProducts(ExpenseView expenseView, Expense expense) {
@@ -42,6 +54,7 @@ public class ExpenseBusinessAdaptor {
             product.setQuantity(productView.getQuantity());
             product.setPrice(productView.getPrice());
             product.setRate(productView.getRate());
+            product.setCategory(productView.getCategory());
             product.setExpense(expense);
             productList.add(product);
         }

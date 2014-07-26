@@ -2,9 +2,11 @@ package com.springapp.mvc.service;
 
 import com.springapp.mvc.data.repo.ExpenseRepository;
 import com.springapp.mvc.model.Expense;
+import com.springapp.mvc.model.Product;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,7 +27,12 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public Expense getExpenseByCategory(String category) {
-        return null;
+    public List<Product> getExpenseByMonth(String month) {
+        return null/*expenseRepository.findOne(date)*/;
+    }
+
+    @Override
+    public List<Expense> getAllExpenses() {
+        return expenseRepository.findAll();
     }
 }

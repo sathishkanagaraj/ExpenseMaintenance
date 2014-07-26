@@ -19,12 +19,13 @@ public class Expense {
 
     @Id
     @Column(name = "expense_date")
-    @DateTimeFormat(pattern = "MM/dd/YYYY")
+    @DateTimeFormat(pattern = "MM/DD/YYYY")
     private Date expenseDate;
-    @OneToMany(mappedBy = "expense", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "expense", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Product> products;
     @Column(name = "total_expense")
     private BigDecimal totalExpense;
+
 
     public Expense(Date expenseDate, List<Product> products, BigDecimal totalExpense) {
         this.expenseDate = expenseDate;

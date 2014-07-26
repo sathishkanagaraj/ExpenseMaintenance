@@ -27,6 +27,8 @@ public class ProductBusinessAdaptor {
         product.setBrand(productView.getBrand());
         product.setQuantity(productView.getQuantity());
         product.setPrice(productView.getPrice());
+        product.setRate(productView.getRate());
+        product.setCategory(productView.getCategory());
         return product;
     }
 }

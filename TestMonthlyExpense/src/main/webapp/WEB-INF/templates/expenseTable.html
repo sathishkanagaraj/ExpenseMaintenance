@@ -4,15 +4,16 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css"
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.css"
           th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" media="all" href="../../css/jquery-ui.css" th:href="@{/css/jquery-ui.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/datepicker.css"
+          th:href="@{/css/datepicker.css}"/>
     <title th:text="#{expense.page.title}">Title</title>
 </head>
 
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -36,14 +37,16 @@
         <!--/.navbar-collapse -->
     </div>
 </div>
-<div>
+<div style="margin-top: 40px"></div>
+<div class="container-fluid col-lg-offset-0">
     <form action="#" th:action="@{/create/expense}" th:object="${expenseView}" method="post">
         <ul th:if="${#fields.hasErrors('*')}" style="border: 1px solid red;">
             <li th:each="err : ${#fields.errors('*')}" th:text="${inputError}">Input is incorrect</li>
         </ul>
-
-        <h2 class="sub-header" th:text="#{expense.table.caption}">Add/delete products</h2>
-
+        <div class="container-fluid">
+            <label class="h2 label-info" th:text="#{expense.table.caption}">Expense Date :</label>
+            <input class="h4" type="text" th:field="*{expenseDate}" placeholder="click to add date" id="expenseDate"/>
+        </div>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -51,9 +54,12 @@
                     <th scope="col" th:text="#{expense.id.label}">Id</th>
                     <th scope="col" th:text="#{expense.product.name.label}">Product Name</th>
                     <th scope="col" th:text="#{expense.product.brand.label}">Product Brand</th>
+                    <th scope="col" th:text="#{expense.product.category.label}">Product Category</th>
                     <th scope="col" th:text="#{expense.product.quantity.label}">Quantity</th>
                     <th scope="col" th:text="#{expense.product.rate.label}">Rate</th>
                     <th scope="col" th:text="#{expense.product.price.label}">Price</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -67,6 +73,14 @@
                     <td>
                         <input id="productBrand" type="text" th:field="*{products[__${prodStat.index}__].brand}"
                                placeholder="brand"/>
+                    </td>
+                    <td>
+                        <select th:field="*{products[__${prodStat.index}__].category}">
+                            <option th:each="type : ${categories}"
+                                    th:value="${type}"
+                                    th:text="${type}">Wireframe
+                            </option>
+                        </select>
                     </td>
 
                     <td>
@@ -104,9 +118,10 @@
         </div>
     </form>
 </div>
+
 <script src="../../js/jQuery-2.1.1.js" th:src="@{/js/jQuery-2.1.1.js}"></script>
-<script src="../../js/jquery-ui.js" th:src="@{/js/jquery-ui.js}"></script>
-<script src="../../js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+<script src="../../js/bootstrap-datepicker.js" th:src="@{/js/bootstrap-datepicker.js}"></script>
+<script src="../../js/expenseTable.js" th:src="@{/js/expenseTable.js}"></script>
 
 </body>
 </html>

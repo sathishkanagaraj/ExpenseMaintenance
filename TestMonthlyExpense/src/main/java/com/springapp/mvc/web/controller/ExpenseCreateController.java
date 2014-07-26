@@ -10,11 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -41,8 +44,16 @@ public class ExpenseCreateController {
     @Autowired
     private ExpenseService expenseService;
 
+    private List<String> categories;
+
+    @ModelAttribute("categories")
+    public List<String> getCategories() {
+        categories = Arrays.asList("NS", "SG", "OF", "GF");
+        return categories;
+    }
+
     @RequestMapping({"/expenseChart"})
-    public String getExpensePage(final ExpenseView expenseView, Model model) {
+    public String getExpensePage(@ModelAttribute("expenseView") ExpenseView expenseView, Model model) {
         expenseView.setExpenseDate(Calendar.getInstance().getTime());
         expenseView.setProducts(addProducts());
         return "expenseTable";
@@ -55,8 +66,12 @@ public class ExpenseCreateController {
     }
 
     @RequestMapping(value = "/expense", params = {"addRow"})
-    public String addRow(final ExpenseView expenseView, final BindingResult bindingResult, Model model) {
+    public String addRow(@ModelAttribute("expenseView") ExpenseView expenseView, final BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            List<ObjectError> allErrors = bindingResult.getAllErrors();
+            for (ObjectError allError : allErrors) {
+                System.out.println(allError);
+            }
             model.addAttribute("inputError", "Input is InCorrect");
             return "expenseTable";
         }
@@ -84,7 +99,6 @@ public class ExpenseCreateController {
 
     @RequestMapping(value = "/expense", params = {"retrieveProducts"})
     public String retrieveProducts(final ExpenseView expenseView) {
-        expenseView.setExpenseDate(Calendar.getInstance().getTime());
         List<ProductView> productViews = productViewAdaptor.adapt(productService.retrieveProducts());
         expenseView.setProducts(productViews);
         expenseView.setTotalExpense(getTotalExpense(productViews));

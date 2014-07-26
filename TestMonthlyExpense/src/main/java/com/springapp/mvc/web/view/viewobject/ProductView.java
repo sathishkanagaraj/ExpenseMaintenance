@@ -7,10 +7,19 @@ public class ProductView {
     private Long id;
     private String name;
     private String brand;
-    private String quantity;
+    private String category;
+    private BigDecimal quantity;
     private BigDecimal rate;
     private BigDecimal price;
     private ExpenseView expenseView;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public ExpenseView getExpenseView() {
         return expenseView;
@@ -52,11 +61,11 @@ public class ProductView {
         this.brand = brand;
     }
 
-    public String getQuantity() {
+    public BigDecimal getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 

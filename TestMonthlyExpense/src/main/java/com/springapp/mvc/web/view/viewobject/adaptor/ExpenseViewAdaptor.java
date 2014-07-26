@@ -19,6 +19,7 @@ public class ExpenseViewAdaptor {
         final ExpenseView expenseView = new ExpenseView();
         expenseView.setExpenseDate(expense.getExpenseDate());
         expenseView.setProducts(productViewAdaptor.adapt(expense.getProducts()));
+        expenseView.setTotalExpense(expense.getTotalExpense());
         return expenseView;
     }
 }

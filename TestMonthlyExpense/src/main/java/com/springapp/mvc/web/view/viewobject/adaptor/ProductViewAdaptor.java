@@ -27,6 +27,8 @@ public class ProductViewAdaptor {
             productView.setBrand(product.getBrand());
             productView.setQuantity(product.getQuantity());
             productView.setPrice(product.getPrice());
+            productView.setCategory(product.getCategory());
+            productView.setRate(product.getRate());
             productViews.add(productView);
         }
         return productViews;

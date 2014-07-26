@@ -9,15 +9,8 @@
 
 $(document).ready(function () {
 
-    $(function () {
-        $("#datePicker").datepicker();
-    });
-
-    $('.menu_button').live('click', function () {
-        var id = $(this).attr('id');
-        if (id == "m1") {
-            //do your stuff here
-        }
+    $('#expenseDate').datepicker({
+        format: "yyyy-mm-dd"
     });
 
 });

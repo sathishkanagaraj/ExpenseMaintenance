@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +53,17 @@ public class ExpenseViewController {
         ModelAndView modelAndView = new ModelAndView("expenseView");
         List<Product> productsOnMonth = productService.getProductsByMonth(month);
         modelAndView.addObject("products", productsOnMonth);
+        modelAndView.addObject("totalExpensePerMonth", getTotalExpense(productsOnMonth));
         modelAndView.addObject("month", month);
         return modelAndView;
+    }
+
+    private BigDecimal getTotalExpense(List<Product> productsOnMonth) {
+        BigDecimal totalPrice = BigDecimal.ZERO;
+        for (Product product : productsOnMonth) {
+            totalPrice = totalPrice.add(product.getPrice());
+        }
+        return totalPrice;
     }
 
     @RequestMapping("allExpenses")
@@ -65,6 +75,7 @@ public class ExpenseViewController {
             allProducts.addAll(expense.getProducts());
         }
         modelAndView.addObject("products", allProducts);
+        modelAndView.addObject("totalExpenseSoFar", getTotalExpense(allProducts));
         return modelAndView;
     }
 }

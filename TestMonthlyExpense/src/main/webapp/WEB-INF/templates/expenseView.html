@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/dashboard.css" th:href="@{/css/dashboard.css}"/>
+    <title>Monthly Expense overview</title>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Expense Management</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" th:href="@{/create/expenseChart}">Create Expense Chart</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search..."/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#" th:href="@{/view/allExpenses}">Monthly Expense-2014</a></li>
+                <li><a href="#">January</a></li>
+                <li><a href="#">February</a></li>
+                <li><a href="#">March</a></li>
+                <li><a href="#">April</a></li>
+                <li><a href="#">May</a></li>
+                <li><a href="#" th:href="@{/view/expenseMonth(expenseMonth='June')}">June</a></li>
+                <li><a href="#" th:href="@{/view/expenseMonth(expenseMonth='July')}">July</a></li>
+                <li><a href="#" th:href="@{/view/expenseMonth(expenseMonth='August')}">August</a></li>
+                <li><a href="#" th:href="@{/view/expenseMonth(expenseMonth='September')}">September</a></li>
+                <li><a href="#">October</a></li>
+                <li><a href="#">November</a></li>
+                <li><a href="#">December</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Expenditure Chart</h1>
+
+            <div class="row placeholders">
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <a href="" th:href="@{/view/expense(category='NS')}">
+                        <img src="../../img/spices-nuts.jpg" class="img-responsive"
+                             alt="Generic placeholder thumbnail"/>
+                        <h4>Nuts,Spices</h4>
+                        <span class="text-muted">pepper, jeera, cashew, etc.</span>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <a href="" th:href="@{/view/expense(category='GF')}">
+                        <img src="../../img/gram-flour.jpg" class="img-responsive" alt="Generic placeholder thumbnail"/>
+                        <h4>Flours,Grams</h4>
+                        <span class="text-muted">bengal gram, red gram,gram flour,wheat flour, etc.</span>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <a href="" th:href="@{/view/expense(category='OF')}">
+                        <img src="../../img/oil-readyeat.jpg" class="img-responsive"
+                             alt="Generic placeholder thumbnail"/>
+                        <h4>Edible Oil,Instant Food</h4>
+                        <span class="text-muted">sunflower oil,olive oil,semiya,maggie, etc.</span>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <a href="" th:href="@{/view/expense(category='SG')}">
+                        <img src="../../img/sanitary.png" class="img-responsive" alt="Generic placeholder thumbnail"/>
+                        <h4>Sanitary Goods</h4>
+                        <span class="text-muted">toothpaste,harpic,shampoo, etc.</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-md-5 col-lg-6">
+                    <label class="sub-header"
+                           th:text="'List of Items purchased for month - '+ (${month}?${month}:'All Months')">List of
+                        Items Purchased for this month</label>
+                </div>
+                <div class="col-sm-6 col-md-5 col-md-offset-2 col-lg-6 col-lg-offset-0">
+                    <label class="sub-header"
+                           th:text="'Total Expense - '+ (${totalExpenseSoFar}?${totalExpenseSoFar}:${totalExpensePerMonth})">Total
+                        Expense - </label>
+                </div>
+
+
+            </div>
+
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col" th:text="#{expense.id.label}">Id</th>
+                        <th scope="col" th:text="#{expense.product.name.label}">Product Name</th>
+                        <th scope="col" th:text="#{expense.product.brand.label}">Product Brand</th>
+                        <th scope="col" th:text="#{expense.product.quantity.label}">Quantity</th>
+                        <th scope="col" th:text="#{expense.product.rate.label}">Rate</th>
+                        <th scope="col" th:text="#{expense.product.price.label}">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product,prodStat : ${products}">
+                        <td th:text="${prodStat.count}">1</td>
+                        <td th:text="${product.name}">Product Name</td>
+                        <td th:text="${product.brand}">Product Brand</td>
+                        <td th:text="${product.quantity}">Product Quantity</td>
+                        <td th:text="${product.rate}">Product Rate</td>
+                        <td th:text="${product.price}">Product Price</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/docs.min.js"></script>
+</body>
+</html>

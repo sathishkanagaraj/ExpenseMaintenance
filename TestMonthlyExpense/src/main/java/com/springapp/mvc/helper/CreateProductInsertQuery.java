@@ -21,7 +21,7 @@ public class CreateProductInsertQuery {
     final private ReadExcelDocument readExcelDocument = new ReadExcelDocument();
     private File file;
     private DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
-    private int lastRowIndex = 285;
+    private int lastRowIndex = 345;
 
     public CreateProductInsertQuery(File file) {
         this.file = file;
@@ -39,7 +39,7 @@ public class CreateProductInsertQuery {
             stringBuilder.append(productBuilder.getAmount() + ", ");
             stringBuilder.append(productBuilder.getQuantity() + ", ");
             stringBuilder.append(productBuilder.getUnitPrice() + ", '");
-            stringBuilder.append(dateTimeFormatter.parseDateTime("2014-08-15") + "', '");
+            stringBuilder.append(dateTimeFormatter.parseDateTime("2014-09-15") + "', '");
             stringBuilder.append(productBuilder.getType() + "', '");
             stringBuilder.append(productBuilder.getMonth() + "');");
             stringBuilder.append("\n");

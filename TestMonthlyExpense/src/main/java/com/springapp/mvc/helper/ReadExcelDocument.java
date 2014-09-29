@@ -30,7 +30,7 @@ public class ReadExcelDocument {
     public List<ProductBuilder> readExcelDocumentAndBuildProducts(File file) throws IOException {
         final FileInputStream fileInputStream = new FileInputStream(file);
         XSSFWorkbook xssfWorkbook = new XSSFWorkbook(fileInputStream);
-        XSSFSheet sheet = xssfWorkbook.getSheet("August");
+        XSSFSheet sheet = xssfWorkbook.getSheet("September");
         return buildProductAndItsAttributes(sheet);
     }
 

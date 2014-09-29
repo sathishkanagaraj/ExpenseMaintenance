@@ -30,7 +30,7 @@ public class ReadExcelDocumentTest {
     @Test
     public void testReadExcelDocument_for_no_of_rows_columns() throws Exception {
         List<ProductBuilder> productBuilders = readExcelDocument.readExcelDocumentAndBuildProducts(file);
-        assertEquals(60, productBuilders.size());
+        assertEquals(47, productBuilders.size());
        /* XSSFSheet sheet = xssfWorkbook.getSheet("August");
         int numberOfRows = sheet.getPhysicalNumberOfRows();
         XSSFRow row = sheet.getRow(sheet.getLastRowNum());

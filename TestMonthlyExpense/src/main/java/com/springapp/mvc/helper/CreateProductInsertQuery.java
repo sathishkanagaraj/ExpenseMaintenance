@@ -27,7 +27,7 @@ public class CreateProductInsertQuery {
         this.file = file;
     }
 
-    public void create() throws IOException {
+    public void create(File actual) throws IOException {
         final StringBuilder stringBuilder = new StringBuilder();
         List<ProductBuilder> productBuilders = readExcelDocument.readExcelDocumentAndBuildProducts(file);
         for (ProductBuilder productBuilder : productBuilders) {
@@ -44,7 +44,7 @@ public class CreateProductInsertQuery {
             stringBuilder.append(productBuilder.getMonth() + "');");
             stringBuilder.append("\n");
         }
-        FileOutputStream fileOutputStream = new FileOutputStream(new File("C:\\Users\\sathih\\Documents\\GitHub\\MyGitRepo\\TestMonthlyExpense\\src\\main\\resources\\sql-script\\insert-products-purchased.sql"));
+        FileOutputStream fileOutputStream = new FileOutputStream(actual);
         fileOutputStream.write(stringBuilder.toString().getBytes());
         fileOutputStream.close();
     }

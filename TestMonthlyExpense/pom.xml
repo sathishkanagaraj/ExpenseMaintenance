@@ -11,7 +11,7 @@
         <spring.version>3.2.0.RELEASE</spring.version>
         <thymeleaf.version>2.0.14</thymeleaf.version>
         <javax.servlet-api.version>3.0.1</javax.servlet-api.version>
-        <mysql.connector.version>5.1.16</mysql.connector.version>
+        <mysql.connector.version>8.0.28</mysql.connector.version>
         <hibernate.entitymanager.version>3.6.3.Final</hibernate.entitymanager.version>
         <hibernate.jpa-api.version>2.0-cr-1</hibernate.jpa-api.version>
         <spring.data.jpa.version>1.2.0.RELEASE</spring.data.jpa.version>
